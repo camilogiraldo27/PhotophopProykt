@@ -1,0 +1,116 @@
+package Interfaz;
+import java.applet.AudioClip;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.GroupLayout;
+import javax.swing.Icon;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
+import java.awt.SystemColor;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Color;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class BasicoM extends JFrame {
+
+	JScrollPane scrollpane;
+	  public static void main(String args[]) {
+	    new BasicoM();
+	  }
+	 
+	  public BasicoM() {
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent we) {
+				alcerrar();
+			}
+		});
+		
+	  	setResizable(false);
+	  	setAutoRequestFocus(false);
+	    setIconImage(Toolkit.getDefaultToolkit().getImage(DificilM.class.getResource("/imagenes/2.jpg")));
+	    setTitle("Nivel Basico");
+	    setSize(1102,605);
+	    setLocationRelativeTo(null);
+	    setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	    all();
+	    setVisible(true);
+	  }
+	     
+	  private void alcerrar() {
+		  String botones[]= {"Aceptar","Cancelar"};
+		  int eleccion =JOptionPane.showOptionDialog(this,  "¿Desea salir del nivel?.", "Salir", 0,0, null, botones, this);
+		  if(eleccion==JOptionPane.YES_OPTION) {
+			  setDefaultCloseOperation(DificilM.DISPOSE_ON_CLOSE);
+		  }}
+
+  public void all() {
+    JPanel panel = new JPanel();
+    panel.setBackground(SystemColor.controlHighlight);
+    panel.setLayout(null);
+    
+    scrollpane = new JScrollPane(panel);
+    
+    JLabel lblNivelMedio = new JLabel("NIVEL BASICO");
+    lblNivelMedio.setFont(new Font("Stencil", Font.BOLD, 30));
+    
+    JLabel imagen = new JLabel("");
+    imagen.setIcon(new ImageIcon(BasicoM.class.getResource("/imagenes/lego-logo.jpg")));
+    
+    ImageIcon img1=new ImageIcon(getClass().getResource("/imagenes/lego-logo.jpg"));
+	Icon i1=new ImageIcon(img1.getImage().getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_DEFAULT));
+	imagen.setIcon(i1);
+	
+    GroupLayout gl_panel = new GroupLayout(panel);
+    gl_panel.setHorizontalGroup(
+    	gl_panel.createParallelGroup(Alignment.TRAILING)
+    		.addGroup(gl_panel.createSequentialGroup()
+    			.addContainerGap(633, Short.MAX_VALUE)
+    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+    				.addGroup(gl_panel.createSequentialGroup()
+    					.addComponent(lblNivelMedio, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE)
+    					.addGap(110))
+    				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+    					.addComponent(imagen)
+    					.addGap(34))))
+    );
+    gl_panel.setVerticalGroup(
+    	gl_panel.createParallelGroup(Alignment.LEADING)
+    		.addGroup(gl_panel.createSequentialGroup()
+    			.addContainerGap()
+    			.addComponent(lblNivelMedio, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+    			.addGap(51)
+    			.addComponent(imagen)
+    			.addContainerGap(525, Short.MAX_VALUE))
+    );
+    gl_panel.setAutoCreateGaps(true);
+    gl_panel.setAutoCreateContainerGaps(true);
+    panel.setLayout(gl_panel);
+    
+    scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    getContentPane().add(scrollpane, BorderLayout.EAST);
+  }
+}

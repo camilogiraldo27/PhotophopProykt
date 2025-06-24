@@ -1,0 +1,36 @@
+package prueba;
+
+import java.util.Scanner;
+
+public class persona {
+    //atributos
+	String nombre;
+	int edad;
+	String dni;
+//sobre carga de Metodos=tienen qu etener los parametros diferentes.	
+	//Mètodo constructor
+	public persona(String nombre,int edad){
+		this.nombre=nombre;
+		this.edad=edad;
+		
+	}
+	
+	public persona(String dni){
+		this.dni=dni;
+		
+		
+	}
+	
+	public void programador(){
+		System.out.println("soy"+nombre+"Tengo"+edad+"y soy programador");
+		
+	}
+	
+	public void programador(String dni){
+		System.out.println("y su dni es: "+dni);
+		
+	}
+	
+		
+}
+

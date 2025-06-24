@@ -1,0 +1,918 @@
+package Configuraciones;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+
+public class MedioCFG extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+	JScrollPane scrollPane;
+	public static JPanel contentPane;
+	public static JTextPane textPane_5,textPane_4, textPane_3,textPane_2,textPane_1,textPane;
+	public static JTextField txtrespuesta1,txtrespuesta2,txtrespuesta3,txtrespuesta4,txtrespuesta5,txtrespuesta6,txtrespuesta7,txtrespuesta8;
+	public static JLabel lblayuda2,lblayuda3,lblayuda4,lblayuda5,lblayuda6,lblayuda7,lblayuda8;
+	public static JLabel lblimg8,lblimg7,lblimg6,lblimg5,lblimg4,lblimg3,lblimg2,lblimg1;
+	public static double p1,p2,p3,p4,p5,p6,p7,p8;
+	static String ayc1, ayc2, ayc3, ayc4, ayc5, ayc6, ayc7, ayc8,txtpane5,txtpane4,txtpane3,txtpane2,txtpane1,txtpane;
+	
+	JFileChooser archivo_imagen=new JFileChooser();
+	File fichero;
+	  static byte[] imagen;
+	  static FileInputStream entrada;
+	  static FileOutputStream salida;
+	  static boolean open=false;
+	 
+
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MedioCFG frame = new MedioCFG();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MedioCFG() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent we) {
+				  JOptionPane.showMessageDialog(null, "Vuelve a la venta de configuraciones para guardar o cancelar.", "IMPORTANTE", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
+		
+	  	setResizable(false);
+	  	setAutoRequestFocus(false);
+	  	setIconImage(Toolkit.getDefaultToolkit().getImage(MedioCFG.class.getResource("/imagenes/2.jpg")));
+	    setTitle("Nivel Medio Configuración");
+	    setSize(1102,676);
+	    setLocationRelativeTo(null);
+	    getContentPane().setLayout(new BorderLayout(0, 0));
+	    all();
+	    
+	}
+	
+	public static void Captura_de_resultados()
+	{
+        p1 = Double.valueOf(txtrespuesta1.getText()); p2 = Double.valueOf(txtrespuesta2.getText()); p3 = Double.valueOf(txtrespuesta3.getText()); p4 = Double.valueOf(txtrespuesta4.getText()); 
+        p5 = Double.valueOf(txtrespuesta5.getText()); p6 = Double.valueOf(txtrespuesta6.getText()); p7 = Double.valueOf(txtrespuesta7.getText()); p8 = Double.valueOf(txtrespuesta8.getText()); 
+ }
+	
+	 public void all() {
+	    scrollPane = new JScrollPane();
+	    scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	    scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	    
+	    JPanel panel = new JPanel();
+	    panel.setBackground(Color.WHITE);
+	    scrollPane.setViewportView(panel);
+	    
+	    JLabel label = new JLabel("NIVEL MEDIO");
+	    label.setFont(new Font("Snap ITC", Font.BOLD, 30));
+	    
+	    JLabel label_1 = new JLabel("Realice el siguiente ejercicio");
+	    label_1.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    
+	    lblimg1 = new JLabel("INSERTAR IMAGEN");
+	    lblimg1.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg1, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg1.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg1.setForeground(Color.LIGHT_GRAY);
+	    lblimg1.setFont(new Font("Tahoma", Font.BOLD, 15));
+	    
+	    JLabel label_3 = new JLabel("1)");
+	    label_3.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    
+	    JLabel label_4 = new JLabel("R//");
+	    label_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    txtrespuesta1 = new JTextField();
+	    txtrespuesta1.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta1.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta1.setColumns(10);
+	    txtrespuesta1.setBackground(Color.LIGHT_GRAY);
+	    
+	    JLabel label_6 = new JLabel("2)");
+	    label_6.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    
+	    JLabel label_7 = new JLabel("Realice el siguiente ejercicio");
+	    label_7.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    
+	    lblimg3 = new JLabel("INSERTAR IMAGEN");
+	    lblimg3.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg3, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg3.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg3.setForeground(Color.LIGHT_GRAY);
+	    lblimg3.setFont(new Font("Tahoma", Font.BOLD, 15));
+	    
+	    JLabel label_9 = new JLabel("R//");
+	    label_9.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    txtrespuesta2 = new JTextField();
+	    txtrespuesta2.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta2.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta2.setColumns(10);
+	    txtrespuesta2.setBackground(Color.LIGHT_GRAY);
+	    
+	    lblayuda2 = new JLabel("");
+	    lblayuda2.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc2 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda2.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda2.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda2.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    JLabel label_11 = new JLabel("3)");
+	    label_11.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    
+	    JLabel label_12 = new JLabel("Realice el siguiente ejercicio");
+	    label_12.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    
+	    JLabel label_13 = new JLabel("INSERTAR IMAGEN ");
+	    label_13.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    label_13.setForeground(Color.LIGHT_GRAY);
+	    label_13.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_13.setBackground(Color.LIGHT_GRAY);
+	    
+	    JLabel label_14 = new JLabel("R//");
+	    label_14.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    JLabel label_15 = new JLabel("");
+	    label_15.setToolTipText("\u00BFNecesitas ayuda?");
+	    label_15.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    JLabel label_16 = new JLabel("INSERTAR IMAGEN ");
+	    label_16.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    label_16.setForeground(Color.LIGHT_GRAY);
+	    label_16.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_16.setBackground(Color.LIGHT_GRAY);
+	    
+	    JPanel panel_1 = new JPanel();
+	    panel_1.setLayout(null);
+	    panel_1.setBorder(new EmptyBorder(5, 5, 5, 5));
+	    panel_1.setBackground(Color.WHITE);
+	    
+	    JLabel lblRealiceEl = new JLabel("4)  Realice el siguiente ejercicio");
+	    lblRealiceEl.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    lblRealiceEl.setBounds(0, 11, 346, 17);
+	    panel_1.add(lblRealiceEl);
+	    
+	    textPane = new JTextPane();
+	    textPane.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane=(textPane.getText());
+			}
+	    	
+	    });
+	    textPane.setText("DIGITA EL EJERCICIO QUE DESEAS SOLO TIENE UN ESPACIO DETERMINADO. ");
+	    textPane.setFont(new Font("Imprint MT Shadow", Font.PLAIN, 18));
+	    textPane.setBackground(Color.WHITE);
+	    textPane.setBounds(10, 60, 323, 69);
+	    panel_1.add(textPane);
+	    
+	    lblimg4 = new JLabel("INSERTAR IMAGEN ");
+	    lblimg4.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg4, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg4.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg4.setForeground(Color.LIGHT_GRAY);
+	    lblimg4.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblimg4.setBackground(Color.LIGHT_GRAY);
+	    lblimg4.setBounds(38, 140, 181, 188);
+	    panel_1.add(lblimg4);
+	    
+	    JLabel label_19 = new JLabel("R//");
+	    label_19.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_19.setBounds(42, 349, 28, 17);
+	    panel_1.add(label_19);
+	    
+	    txtrespuesta4 = new JTextField();
+	    txtrespuesta4.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta4.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta4.setColumns(10);
+	    txtrespuesta4.setBackground(Color.LIGHT_GRAY);
+	    txtrespuesta4.setBounds(80, 349, 92, 20);
+	    panel_1.add(txtrespuesta4);
+	    
+	    lblayuda4 = new JLabel("");
+	    lblayuda4.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc4 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda4.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda4.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda4.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblayuda4.setBounds(190, 349, 24, 24);
+	    panel_1.add(lblayuda4);
+	    
+	    JLabel label_21 = new JLabel("5)");
+	    label_21.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    label_21.setBounds(493, 16, 14, 14);
+	    panel_1.add(label_21);
+	    
+	    JLabel label_22 = new JLabel("Realice el siguiente ejercicio");
+	    label_22.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    label_22.setBounds(525, 11, 346, 17);
+	    panel_1.add(label_22);
+	    
+	    textPane_1 = new JTextPane();
+	    textPane_1.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane1=(textPane_1.getText());
+			}
+	    	
+	    });
+	    textPane_1.setToolTipText("Borra y escribe el ejercicio.");
+	    textPane_1.setText("DIGITA EL EJERCICIO QUE DESEAS SOLO TIENE UN ESPACIO DETERMINADO. ");
+	    textPane_1.setFont(new Font("Imprint MT Shadow", Font.PLAIN, 18));
+	    textPane_1.setBackground(Color.WHITE);
+	    textPane_1.setBounds(525, 60, 395, 69);
+	    panel_1.add(textPane_1);
+	    
+	    JLabel label_23 = new JLabel("R//");
+	    label_23.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_23.setBounds(544, 330, 28, 17);
+	    panel_1.add(label_23);
+	    
+	    txtrespuesta5 = new JTextField();
+	    txtrespuesta5.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta5.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta5.setColumns(10);
+	    txtrespuesta5.setBackground(Color.LIGHT_GRAY);
+	    txtrespuesta5.setBounds(582, 330, 120, 20);
+	    panel_1.add(txtrespuesta5);
+	    
+	    lblayuda5 = new JLabel("");
+	    lblayuda5.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc5 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda5.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda5.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda5.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblayuda5.setBounds(736, 330, 24, 24);
+	    panel_1.add(lblayuda5);
+	    
+	    lblimg5 = new JLabel("INSERTAR IMAGEN ");
+	    lblimg5.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg5, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg5.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg5.setForeground(Color.LIGHT_GRAY);
+	    lblimg5.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblimg5.setBackground(Color.LIGHT_GRAY);
+	    lblimg5.setBounds(585, 141, 300, 158);
+	    panel_1.add(lblimg5);
+	    
+	    JLabel label_26 = new JLabel("3)");
+	    label_26.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    
+	    JLabel label_27 = new JLabel("Realice el siguiente ejercicio");
+	    label_27.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    
+	    lblimg2 = new JLabel("INSERTAR IMAGEN");
+	    lblimg2.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg2, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg2.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg2.setForeground(Color.LIGHT_GRAY);
+	    lblimg2.setFont(new Font("Tahoma", Font.BOLD, 15));
+	    
+	    JLabel label_29 = new JLabel("R//");
+	    label_29.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    txtrespuesta3 = new JTextField();
+	    txtrespuesta3.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta3.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta3.setColumns(10);
+	    txtrespuesta3.setBackground(Color.LIGHT_GRAY);
+	    
+	    lblayuda3 = new JLabel("");
+	    lblayuda3.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc3 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda3.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda3.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda3.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    
+	    JLabel label_5 = new JLabel("RESULVA LOS SIGUIENTES EJERCICIOS ");
+	    label_5.setFont(new Font("Segoe Print", Font.BOLD, 16));
+	    
+	    JPanel panel_2 = new JPanel();
+	    panel_2.setLayout(null);
+	    panel_2.setBorder(new EmptyBorder(5, 5, 5, 5));
+	    panel_2.setBackground(Color.WHITE);
+	    
+	    JLabel label_10 = new JLabel("6)");
+	    label_10.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    label_10.setBounds(72, 66, 25, 14);
+	    panel_2.add(label_10);
+	    
+	    JLabel label_30 = new JLabel("Resuelva \r\n");
+	    label_30.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    label_30.setBounds(103, 61, 235, 17);
+	    panel_2.add(label_30);
+	    
+	    textPane_2 = new JTextPane();
+	    textPane_2.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane2=(textPane_2.getText());
+			}
+	    	
+	    });
+	    textPane_2.setToolTipText("Borra y escribe el ejercicio.");
+	    textPane_2.setText("DIGITA EL EJERCICIO QUE DESEAS SOLO TIENE UN ESPACIO DETERMINADO.");
+	    textPane_2.setFont(new Font("Imprint MT Shadow", Font.PLAIN, 18));
+	    textPane_2.setBackground(Color.WHITE);
+	    textPane_2.setBounds(62, 90, 235, 162);
+	    panel_2.add(textPane_2);
+	    
+	    JLabel label_31 = new JLabel("7)");
+	    label_31.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    label_31.setBounds(366, 66, 19, 14);
+	    panel_2.add(label_31);
+	    
+	    JLabel label_32 = new JLabel("Resuelva \r\n");
+	    label_32.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    label_32.setBounds(402, 61, 235, 17);
+	    panel_2.add(label_32);
+	    
+	    lblimg6 = new JLabel("INSERTAR LA IMAGEN");
+	    lblimg6.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg6, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg6.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg6.setForeground(Color.LIGHT_GRAY);
+	    lblimg6.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblimg6.setBackground(Color.LIGHT_GRAY);
+	    lblimg6.setBounds(63, 226, 225, 128);
+	    panel_2.add(lblimg6);
+	    
+	    textPane_3 = new JTextPane();
+	    textPane_3.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane3=(textPane_3.getText());
+			}
+	    	
+	    });
+	    textPane_3.setToolTipText("Borra y escribe el ejercicio.");
+	    textPane_3.setText("DIGITA EL EJERCICIO QUE DESEAS SOLO TIENE UN ESPACIO DETERMINADO. ");
+	    textPane_3.setFont(new Font("Imprint MT Shadow", Font.PLAIN, 18));
+	    textPane_3.setBackground(Color.WHITE);
+	    textPane_3.setBounds(362, 88, 255, 176);
+	    panel_2.add(textPane_3);
+	    
+	    lblimg7 = new JLabel("INSERTAR LA IMAGEN");
+	    lblimg7.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg7, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg7.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg7.setForeground(Color.LIGHT_GRAY);
+	    lblimg7.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblimg7.setBackground(Color.LIGHT_GRAY);
+	    lblimg7.setBounds(375, 226, 198, 128);
+	    panel_2.add(lblimg7);
+	    
+	    JLabel label_35 = new JLabel("8)");
+	    label_35.setFont(new Font("Bodoni MT Black", Font.BOLD, 12));
+	    label_35.setBounds(697, 66, 25, 14);
+	    panel_2.add(label_35);
+	    
+	    JLabel label_36 = new JLabel("Resuelva \r\n");
+	    label_36.setFont(new Font("Segoe Print", Font.BOLD, 20));
+	    label_36.setBounds(732, 61, 235, 17);
+	    panel_2.add(label_36);
+	    
+	    textPane_4 = new JTextPane();
+	    textPane_4.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane4=(textPane_4.getText());
+			}
+	    	
+	    });
+	    textPane_4.setToolTipText("Borra y escribe el ejercicio.");
+	    textPane_4.setFont(new Font("Imprint MT Shadow", Font.PLAIN, 18));
+	    textPane_4.setBackground(Color.WHITE);
+	    textPane_4.setBounds(712, 88, 255, 176);
+	    panel_2.add(textPane_4);
+	    
+	    JLabel label_37 = new JLabel("R//");
+	    label_37.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_37.setBounds(71, 396, 28, 17);
+	    panel_2.add(label_37);
+	    
+	    txtrespuesta6 = new JTextField();
+	    txtrespuesta6.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta6.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta6.setColumns(10);
+	    txtrespuesta6.setBackground(Color.LIGHT_GRAY);
+	    txtrespuesta6.setBounds(109, 393, 92, 20);
+	    panel_2.add(txtrespuesta6);
+	    
+	    lblayuda6 = new JLabel("");
+	    lblayuda6.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc6 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda6.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda6.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda6.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblayuda6.setBounds(211, 389, 24, 24);
+	    panel_2.add(lblayuda6);
+	    
+	    JLabel label_39 = new JLabel("R//");
+	    label_39.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_39.setBounds(375, 392, 28, 17);
+	    panel_2.add(label_39);
+	    
+	    txtrespuesta7 = new JTextField();
+	    txtrespuesta7.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    });
+	    txtrespuesta7.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta7.setColumns(10);
+	    txtrespuesta7.setBackground(Color.LIGHT_GRAY);
+	    txtrespuesta7.setBounds(413, 393, 92, 20);
+	    panel_2.add(txtrespuesta7);
+	    
+	    lblayuda7 = new JLabel("");
+	    lblayuda7.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc7 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda7.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda7.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda7.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblayuda7.setBounds(515, 389, 24, 24);
+	    panel_2.add(lblayuda7);
+	    
+	    JLabel label_41 = new JLabel("R//");
+	    label_41.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    label_41.setBounds(674, 396, 28, 17);
+	    panel_2.add(label_41);
+	    
+	    txtrespuesta8 = new JTextField();
+	    txtrespuesta8.addKeyListener(new KeyAdapter() {
+	    	@Override
+	    	public void keyTyped(KeyEvent evt) {
+	    		char c=evt.getKeyChar(); 	 
+	    		if(Character.isLetter(c)) {
+	    			getToolkit().beep();
+	       			evt.consume();
+	    			JOptionPane.showMessageDialog(null, "Ingresar solo numeros enteros o Decimales(.)");
+	    		}
+	    	}
+	    	}
+	    );
+	    txtrespuesta8.setToolTipText("Ingresa las respuestas en forma numerica.");
+	    txtrespuesta8.setColumns(10);
+	    txtrespuesta8.setBackground(Color.LIGHT_GRAY);
+	    txtrespuesta8.setBounds(711, 393, 118, 20);
+	    panel_2.add(txtrespuesta8);
+	    
+	    lblayuda8 = new JLabel("");
+	    lblayuda8.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		ayc8 = JOptionPane.showInputDialog(null, "Ingresa la yuda que deseas.");
+	    	}
+	    });
+	    lblayuda8.setToolTipText("Escribe la ayuda que desees dar a los participantes!");
+	    lblayuda8.setIcon(new ImageIcon(MedioCFG.class.getResource("/imagenes/ayuda2.png")));
+	    lblayuda8.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblayuda8.setBounds(854, 389, 24, 24);
+	    panel_2.add(lblayuda8);
+	    
+	    lblimg8 = new JLabel("INSERTAR IMAGEN");
+	    lblimg8.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent arg0) {
+	    		if(archivo_imagen.showOpenDialog(null)== JFileChooser.APPROVE_OPTION){
+	        		rsscalelabel.RSScaleLabel.setScaleLabel(lblimg8, archivo_imagen.getSelectedFile().toString());
+	        	}
+	    	}
+	    });
+	    lblimg8.setToolTipText("Clic para insertar la imagen que desea para el ejercicio.");
+	    lblimg8.setForeground(Color.LIGHT_GRAY);
+	    lblimg8.setFont(new Font("Tahoma", Font.BOLD, 14));
+	    lblimg8.setBackground(Color.LIGHT_GRAY);
+	    lblimg8.setBounds(705, 237, 198, 111);
+	    panel_2.add(lblimg8);
+	    
+	    textPane_5 = new JTextPane();
+	    
+	    textPane_5.setText("INGRESE ALGUNA NOTA.");
+	    textPane_5.getDocument().addDocumentListener(new DocumentListener(){
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				warn();	
+			}
+			
+			public void warn(){
+				txtpane5=(textPane_5.getText());
+			}
+	    	
+	    });
+	    textPane_5.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
+	    textPane_5.setBackground(Color.WHITE);
+	    textPane_5.setBounds(0, 602, 552, 52);
+	    panel_2.add(textPane_5);
+	    
+	    JLabel label_44 = new JLabel("");
+	    label_44.setBounds(580, 520, 82, 123);
+	    panel_2.add(label_44);
+	    
+	    JLabel label_45 = new JLabel("");
+	    label_45.setBounds(669, 571, 263, 94);
+	    panel_2.add(label_45);
+	    GroupLayout gl_panel = new GroupLayout(panel);
+	    gl_panel.setHorizontalGroup(
+	    	gl_panel.createParallelGroup(Alignment.LEADING)
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(387)
+	    			.addComponent(label, GroupLayout.PREFERRED_SIZE, 286, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(360)
+	    			.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(78)
+	    			.addComponent(label_3)
+	    			.addGap(6)
+	    			.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(187)
+	    			.addComponent(label_6)
+	    			.addGap(18)
+	    			.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(98)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addComponent(lblimg1, GroupLayout.PREFERRED_SIZE, 261, GroupLayout.PREFERRED_SIZE)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(10)
+	    					.addComponent(txtrespuesta1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)))
+	    			.addGap(236)
+	    			.addComponent(label_26)
+	    			.addGap(18)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addComponent(lblimg3, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(10)
+	    					.addComponent(txtrespuesta2, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(10)
+	    					.addComponent(lblayuda2, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+	    				.addComponent(label_27, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+	    				.addComponent(lblimg2, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(627)
+	    			.addComponent(label_29, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(10)
+	    			.addComponent(txtrespuesta3, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(10)
+	    			.addComponent(lblayuda3, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(91)
+	    			.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 976, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(452)
+	    			.addComponent(label_16, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(516)
+	    			.addComponent(label_11)
+	    			.addGap(18)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addComponent(label_12, GroupLayout.PREFERRED_SIZE, 346, GroupLayout.PREFERRED_SIZE)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(88)
+	    					.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 248, GroupLayout.PREFERRED_SIZE))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addComponent(label_14, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(114)
+	    					.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))))
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(39)
+	    			.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 1014, GroupLayout.PREFERRED_SIZE))
+	    );
+	    gl_panel.setVerticalGroup(
+	    	gl_panel.createParallelGroup(Alignment.LEADING)
+	    		.addGroup(gl_panel.createSequentialGroup()
+	    			.addGap(11)
+	    			.addComponent(label, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(6)
+	    			.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+	    			.addGap(18)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(5)
+	    					.addComponent(label_3))
+	    				.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(16)
+	    					.addComponent(label_6))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(11)
+	    					.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)))
+	    			.addGap(18)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(33)
+	    					.addComponent(lblimg1, GroupLayout.PREFERRED_SIZE, 203, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(30)
+	    					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    						.addComponent(label_4)
+	    						.addComponent(txtrespuesta1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(158)
+	    					.addComponent(label_26))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addComponent(lblimg3, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(6)
+	    					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    						.addGroup(gl_panel.createSequentialGroup()
+	    							.addGap(4)
+	    							.addComponent(label_9))
+	    						.addGroup(gl_panel.createSequentialGroup()
+	    							.addGap(4)
+	    							.addComponent(txtrespuesta2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	    						.addComponent(lblayuda2, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+	    					.addGap(24)
+	    					.addComponent(label_27, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(20)
+	    					.addComponent(lblimg2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
+	    			.addGap(18)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(4)
+	    					.addComponent(label_29))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(4)
+	    					.addComponent(txtrespuesta3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	    				.addComponent(lblayuda3, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+	    			.addGap(27)
+	    			.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    				.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(115)
+	    					.addComponent(label_16, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(50)
+	    					.addComponent(label_11))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(45)
+	    					.addComponent(label_12, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(20)
+	    					.addComponent(label_13, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+	    					.addGap(35)
+	    					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+	    						.addComponent(label_14)
+	    						.addComponent(label_15, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)))
+	    				.addGroup(gl_panel.createSequentialGroup()
+	    					.addGap(342)
+	    					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 640, GroupLayout.PREFERRED_SIZE)))
+	    			.addContainerGap())
+	    );
+	    gl_panel.setAutoCreateGaps(true);
+	    gl_panel.setAutoCreateContainerGaps(true);
+	    panel.setLayout(gl_panel);
+	    getContentPane().add(scrollPane);
+	    setVisible(true);
+	}
+}
